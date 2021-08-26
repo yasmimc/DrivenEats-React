@@ -1,3 +1,4 @@
+import React from 'react';
 import fetchOptions from '../data';
 
 export default function Options(props){
@@ -14,9 +15,11 @@ export default function Options(props){
 }
 
 function Option(props){
-    
+
+    const [selectedOption, setSelectedOption] = React.useState("");
+
     return (
-        <button className="option" >
+        <button className={`option ${selectedOption}`} onClick={() => setSelectedOption("selectedOption")}>
             <img src={props.img}></img>
             <h1 className="product-name">{props.name}</h1>
             <p className="product-description">{props.description}</p>
@@ -25,3 +28,4 @@ function Option(props){
         </button>
     );
 }
+
