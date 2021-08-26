@@ -1,3 +1,4 @@
+import { func } from 'prop-types';
 import React from 'react';
 import fetchOptions from '../data';
 
@@ -24,8 +25,14 @@ function Option(props){
             <h1 className="product-name">{props.name}</h1>
             <p className="product-description">{props.description}</p>
             <p className="product-price">{props.price}</p>
-            <ion-icon className="icon" name="checkmark-circle"></ion-icon>
+            <ItemCounter/>
         </button>
     );
 }
 
+function ItemCounter(){
+    const [valor, setValor] = React.useState(0);
+    return(
+        <p className="item-counter"><spam onClick={() => setValor(valor <= 0 ? 0 : valor - 1)} style={{color:'red'}}>-</spam> {valor} <spam onClick={() => setValor(valor + 1)} style={{color:'green'}}>+</spam></p>
+    )
+}

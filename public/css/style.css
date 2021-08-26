@@ -8,7 +8,7 @@ div {
     scrollbar-width: none; 
 }
 
-ion-icon {
+.item-counter {
     display: none;
 }
 
@@ -101,6 +101,14 @@ ion-icon {
     font-size: 20px;
     bottom: 13px;
     right: 5px;
+}
+
+.selectedOption .item-counter {
+    display: initial;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    font-size: 15px;    
 }
 
 img {
