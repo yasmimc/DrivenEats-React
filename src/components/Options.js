@@ -31,7 +31,11 @@ function Option(props){
             setSelectedOption("")
         }  
         return(
-            <p className="item-counter"><spam onClick={() => setValor(valor <= 0 ? 0 : valor - 1)} style={{color:'red'}}>-</spam> {valor} <spam onClick={() => setValor(valor + 1)} style={{color:'green'}}>+</spam></p>
+            <p className="item-counter">
+                <span onClick={() => setValor(valor <= 0 ? 0 : valor - 1)} style={{color:'red'}}>-</span>
+                {` ${valor} `}
+                <span onClick={() => setValor(valor + 1)} style={{color:'green'}}>+</span>
+            </p>
         )
     }
 
