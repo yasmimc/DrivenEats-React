@@ -1,22 +1,29 @@
 import Options from "./Options";
 
 export default function Content(){
+    const categories = [
+        {
+            name: "mainCourse",
+            title: "Primeiro seu prato"
+        },
+        {
+            name: "drink",
+            title: "Agora, sua bebida",
+        },
+        {
+            name: "dessert",
+            title: "Por fim, sua sobremesa"
+        }
+    ];
+
     return(
         <div className="content">
-            <div className="main-course">
-                <h1 className="section-title">Primeiro seu prato</h1>
-                <Options type="mainCourse" />
-            </div>
-
-            <div className="drink">
-                <h1 className="section-title">Agora, sua bebida</h1>
-                <Options type="drink"/>
-            </div>
-
-            <div className="dessert">
-                <h1 className="section-title">Por fim, sua sobremesa</h1>
-                <Options type="dessert"/>
-            </div>
+            {categories.map((category, index)=> (
+                <div key = {index}>
+                    <h1 className="section-title">{category.title}</h1>
+                    <Options type={category.name} />
+                </div>
+            ))}
         </div>
     );
 }
