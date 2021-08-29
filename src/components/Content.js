@@ -1,6 +1,12 @@
+import React from "react";
 import Options from "./Options";
 
+import fetchOptions from "../data";
+
 export default function Content(){
+    const [order, setOrder] = React.useState([])
+    // console.log(order)
+
     const categories = [
         {
             name: "mainCourse",
@@ -21,7 +27,11 @@ export default function Content(){
             {categories.map((category, index)=> (
                 <div key = {index}>
                     <h1 className="section-title">{category.title}</h1>
-                    <Options type={category.name} />
+                    <Options 
+                        order = {order} 
+                        setOrder = {setOrder} 
+                        type = {category.name} 
+                    />
                 </div>
             ))}
         </div>

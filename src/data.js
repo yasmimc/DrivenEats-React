@@ -1,12 +1,12 @@
-export default function fetchOptions(props) {
+export default function fetchOptions(type) {
 
-    if(props.type === "mainCourse") {
+    if(type === "mainCourse") {
         return MainCourseOptions();
     }    
-    if (props.type === "drink"){
+    if (type === "drink"){
         return DrinkOptions();
     }
-    if (props.type === "dessert"){
+    if (type === "dessert"){
         return DessertOptions();
     }
 }
