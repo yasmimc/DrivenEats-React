@@ -6,9 +6,13 @@ export default function BottomBar(props) {
 
 	const order = props.order;
 
-	const theresMainCourseOrder = (order.filter((item) => (item.type === "mainCourse")).length);
-	const theresDrinkOrder = (order.filter((item) => (item.type === "drink")).length);
-	const theresDessertOrder = (order.filter((item) => (item.type === "dessert")).length);
+	const mainCourseOrder = order.filter((item) => (item.type === "mainCourse"));
+	const drinkOrder = order.filter((item) => (item.type === "drink"));
+	const dessertOrder = order.filter((item) => (item.type === "dessert"));
+
+	const theresMainCourseOrder = mainCourseOrder.length;
+	const theresDrinkOrder = drinkOrder.length;
+	const theresDessertOrder = dessertOrder.length;
 
 	if (theresMainCourseOrder && theresDrinkOrder && theresDessertOrder) enableBtn();
 	else disableBtn();
@@ -29,7 +33,7 @@ export default function BottomBar(props) {
 
 	function sendOrder() {
 		if (btnState === "enabled") {
-			executeOrder();
+			sendWppMsg(mainCourseOrder, drinkOrder, dessertOrder, calcTotalPrice(order));
 		}
 	}
 
@@ -42,16 +46,34 @@ export default function BottomBar(props) {
 	);
 }
 
-function executeOrder() {
+function sendWppMsg(mainCourseOrder, drinkOrder, dessertOrder, totalPrice) {
 
 	const whatsappNumber = "553184146801";
 	let whatsappMsg = `
-	Olá, gostaria de fazer o pedido:\n
-	- Prato: \n
-	- Bebida: \n
-	- Sobremesa: \n
-	Total: ;
+	Olá, gostaria de fazer o pedido:
+	- Prato: ${
+		mainCourseOrder.map(item => ` ${item.name}${item.amount > 1 ? `(${item.amount}x)` : ""}`)
+	}
+	- Bebida: ${
+		drinkOrder.map(item => ` ${item.name}${item.amount > 1 ? `(${item.amount}x)` : ""}`)
+	}
+	- Sobremesa: ${
+		dessertOrder.map(item => ` ${item.name}${item.amount > 1 ? `(${item.amount}x)` : ""}`)
+	}
+	Total: R$ ${totalPrice};
 	`;
+	
 	whatsappMsg = encodeURIComponent(whatsappMsg);
+	
 	window.open("https://wa.me/"+ whatsappNumber+"?text="+whatsappMsg);    
+}
+
+function calcTotalPrice(order){
+	let total = 0;
+	order.map((item)=>{		
+		const price = (Number(item.price.substring(3).replace(',', '.')))
+		total = Number(total) + Number(price)		
+	})
+	total = Number(total).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
+	return total;
 }
