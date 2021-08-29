@@ -40,7 +40,7 @@ function Option(props){
                 name,
                 price,
                 amount: 1
-            }])
+            }]);
         }        
     }
     
@@ -63,7 +63,7 @@ function Option(props){
 }
 
 function ItemCounter(props){ 
-    const {amount, setAmount, setSelectedOption, order, setOrder, item} = props;
+    const {amount, setAmount, setSelectedOption, order, setOrder} = props;
 
     const indexSelectedItem = order.indexOf(order.find((item)=> item.name === props.item.name))
 
@@ -71,28 +71,28 @@ function ItemCounter(props){
 
         if (amount === 1) {
             setSelectedOption("");
-            order.splice(indexSelectedItem, 1)
+            order.splice(indexSelectedItem, 1);
         }
         
         setAmount(amount-1)
         order.map((item, index)=>{
             if(index === indexSelectedItem){
-                item.amount = amount -1
+                item.amount = amount -1;
             }
             
-        })
-        setOrder([...order])
+        });
+        setOrder([...order]);
     }
 
     function increase(amount){
-        setAmount(amount + 1)
+        setAmount(amount + 1);
     
         order.map((item, index)=>{
             if(index === indexSelectedItem){
-                item.amount = amount + 1
+                item.amount = amount + 1;
             }
-        })
-        setOrder([...order])        
+        });
+        setOrder([...order]);   
     }
 
     return(
