@@ -25,9 +25,9 @@ export default function Options(props){
     );
 }
 
-function Option(props){
+function Option(props){   
     
-    const {img, name, price, description, order, setOrder} = props;
+    const {img, name, price, description, order, setOrder, type} = props;
 
     const [selectedOption, setSelectedOption] = React.useState("");   
     const [amount, setAmount]  = React.useState(0);  
@@ -36,7 +36,8 @@ function Option(props){
         if(amount === 0){
             setAmount(1);
             setSelectedOption("selectedOption")   
-            setOrder([... order, {
+            setOrder([...order, {
+                type,
                 name,
                 price,
                 amount: 1

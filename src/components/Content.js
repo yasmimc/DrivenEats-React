@@ -3,9 +3,9 @@ import Options from "./Options";
 
 import fetchOptions from "../data";
 
-export default function Content(){
-    const [order, setOrder] = React.useState([])
-    // console.log(order)
+export default function Content(props){
+    
+    const {order, setOrder} = props;
 
     const categories = [
         {
