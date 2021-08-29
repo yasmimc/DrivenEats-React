@@ -45,12 +45,13 @@ export default function BottomBar(props) {
 function executeOrder() {
 
 	const whatsappNumber = "553184146801";
-	const whatsappMsg = `
+	let whatsappMsg = `
 	Olá, gostaria de fazer o pedido:\n
 	- Prato: \n
 	- Bebida: \n
 	- Sobremesa: \n
 	Total: ;
 	`;
+	whatsappMsg = encodeURIComponent(whatsappMsg);
 	window.open("https://wa.me/"+ whatsappNumber+"?text="+whatsappMsg);    
 }
