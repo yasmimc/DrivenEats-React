@@ -47,6 +47,8 @@ function sendWppMsg(mainCourseOrder, drinkOrder, dessertOrder, totalPrice) {
 	}
 	Total: R$ ${totalPrice};
 	`;
+
+    whatsappMsg = whatsappMsg.replaceAll('	', '');
 	
 	whatsappMsg = encodeURIComponent(whatsappMsg);
 	
