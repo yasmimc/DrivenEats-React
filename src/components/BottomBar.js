@@ -1,5 +1,14 @@
 import React from "react";
 
+import ConfirmationScreen from "./ConfirmationScreen";
+
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link
+} from "react-router-dom";
+
 export default function BottomBar(props) {
 	const [btnState, setBtnState] = React.useState("");
 	const [btnText, setBtnText] = React.useState("Selecione os 3 itens para fechar o pedido");
@@ -20,7 +29,7 @@ export default function BottomBar(props) {
 	function enableBtn() {
 		if (btnState === "") {
 			setBtnState("enabled");
-			setBtnText("Fechar pedido");
+			setBtnText("Finalizar pedido");
 		}
 	}
 
@@ -31,49 +40,27 @@ export default function BottomBar(props) {
 		}
 	}
 
-	function sendOrder() {
-		if (btnState === "enabled") {
-			sendWppMsg(mainCourseOrder, drinkOrder, dessertOrder, calcTotalPrice(order));
-		}
-	}
-
 	return (
-		<div className="bottom-bar">
-			<button onClick={sendOrder} className={`order-buttom ${btnState}`}>
-				{btnText}
-			</button>
-		</div>
+		<Router>
+			<div className="bottom-bar">
+				<Link to="/revisar">
+					<button className={`order-buttom ${btnState}`}>
+						{btnText}
+					</button>
+				</Link>
+			</div>
+			<Switch>
+				<Route path="/revisar">
+					<ConfirmationScreen
+						btnState = {btnState}
+						order={order}
+						mainCourseOrder = {mainCourseOrder}
+						drinkOrder = {drinkOrder}
+						dessertOrder = {dessertOrder}
+					/>
+				</Route>
+			</Switch>
+		</Router>
 	);
 }
 
-function sendWppMsg(mainCourseOrder, drinkOrder, dessertOrder, totalPrice) {
-
-	const whatsappNumber = "553184146801";
-	let whatsappMsg = `
-	Olá, gostaria de fazer o pedido:
-	- Prato: ${
-		mainCourseOrder.map(item => ` ${item.name}${item.amount > 1 ? `(${item.amount}x)` : ""}`)
-	}
-	- Bebida: ${
-		drinkOrder.map(item => ` ${item.name}${item.amount > 1 ? `(${item.amount}x)` : ""}`)
-	}
-	- Sobremesa: ${
-		dessertOrder.map(item => ` ${item.name}${item.amount > 1 ? `(${item.amount}x)` : ""}`)
-	}
-	Total: R$ ${totalPrice};
-	`;
-	
-	whatsappMsg = encodeURIComponent(whatsappMsg);
-	
-	window.open("https://wa.me/"+ whatsappNumber+"?text="+whatsappMsg);    
-}
-
-function calcTotalPrice(order){
-	let total = 0;
-	order.map((item)=>{		
-		const price = (Number(item.price.substring(3).replace(',', '.')))
-		total = Number(total) + Number(price)		
-	})
-	total = Number(total).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
-	return total;
-}

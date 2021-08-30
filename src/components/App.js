@@ -15,7 +15,6 @@ export default function App() {
             <TopBar />
             <Content order = {order} setOrder = {setOrder}/>
             <BottomBar order = {order}/>
-            <div className="confirmation-screen disabled"></div>
         </div>
     );
 }
