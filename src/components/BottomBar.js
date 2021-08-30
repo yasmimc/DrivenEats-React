@@ -1,23 +1,14 @@
 import React from "react";
-
-import ConfirmationScreen from "./ConfirmationScreen";
-
 import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
 	Link
 } from "react-router-dom";
 
 export default function BottomBar(props) {
 	const [btnState, setBtnState] = React.useState("");
 	const [btnText, setBtnText] = React.useState("Selecione os 3 itens para fechar o pedido");
+	const [disabledBtn, setDisabledBtn] = React.useState();
 
-	const order = props.order;
-
-	const mainCourseOrder = order.filter((item) => (item.type === "mainCourse"));
-	const drinkOrder = order.filter((item) => (item.type === "drink"));
-	const dessertOrder = order.filter((item) => (item.type === "dessert"));
+	const {mainCourseOrder, drinkOrder, dessertOrder} = props;
 
 	const theresMainCourseOrder = mainCourseOrder.length;
 	const theresDrinkOrder = drinkOrder.length;
@@ -37,30 +28,28 @@ export default function BottomBar(props) {
 		if (btnState === "enabled") {
 			setBtnState("");
 			setBtnText("Selecione os 3 itens para fechar o pedido");
+			setDisabledBtn("onClick={e => e.preventDefault()}") 
+		}
+	}
+
+	function changeBtnState (event){
+		if (btnState === "") {
+			console.log("dsadsa")
+			event.preventDefault()
 		}
 	}
 
 	return (
-		<Router>
+		
 			<div className="bottom-bar">
-				<Link to="/revisar">
+				<Link to="/revisar" onClick={(event)=>(changeBtnState(event))}>
 					<button className={`order-buttom ${btnState}`}>
 						{btnText}
 					</button>
 				</Link>
 			</div>
-			<Switch>
-				<Route path="/revisar">
-					<ConfirmationScreen
-						btnState = {btnState}
-						order={order}
-						mainCourseOrder = {mainCourseOrder}
-						drinkOrder = {drinkOrder}
-						dessertOrder = {dessertOrder}
-					/>
-				</Route>
-			</Switch>
-		</Router>
+			
+		
 	);
 }
 

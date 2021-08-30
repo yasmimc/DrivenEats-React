@@ -26,11 +26,24 @@ export default function Options(props){
 }
 
 function Option(props){   
-    
     const {img, name, price, description, order, setOrder, type} = props;
 
     const [selectedOption, setSelectedOption] = React.useState("");   
     const [amount, setAmount]  = React.useState(0);  
+
+    function reRenderOptions(order){
+        const listItem = order.find((item)=>(item.name === name));
+        if(listItem){
+            if(selectedOption===""){
+                setSelectedOption("selectedOption")
+                setAmount(listItem.amount)
+            }
+        }
+    }
+
+    if(order.length !== 0){
+        reRenderOptions(order);
+    }
 
     function selectOption(){
         if(amount === 0){
