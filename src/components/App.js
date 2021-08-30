@@ -26,7 +26,10 @@ export default function App() {
             <TopBar />
             <Switch>
                 <Route path = "/" exact>
-                    <Content order = {order} setOrder = {setOrder}/>
+                    <Content 
+                        order = {order} 
+                        setOrder = {setOrder}
+                    />
                     <BottomBar 
                         order = {order}
                         mainCourseOrder = {mainCourseOrder}

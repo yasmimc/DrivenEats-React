@@ -1,17 +1,17 @@
 export default function fetchOptions(type) {
 
     if(type === "mainCourse") {
-        return MainCourseOptions();
+        return mainCourseOptions();
     }    
     if (type === "drink"){
-        return DrinkOptions();
+        return drinkOptions();
     }
     if (type === "dessert"){
-        return DessertOptions();
+        return dessertOptions();
     }
 }
 
-function MainCourseOptions() {
+function mainCourseOptions() {
     return ([
         {
             img: "assets/feijaovegano.png",
@@ -40,7 +40,7 @@ function MainCourseOptions() {
     ]);
 }
 
-function DrinkOptions(){
+function drinkOptions(){
     return ([
         {
             img: "assets/guaraná.jpg",
@@ -69,7 +69,7 @@ function DrinkOptions(){
     ]);
 }
 
-function DessertOptions(){
+function dessertOptions(){
     return ([
         {
             img: "assets/petit-gateau.jpg",
@@ -97,3 +97,7 @@ function DessertOptions(){
         }
     ]);
 }
+
+const whatsappNumber = "553184146801";
+
+export {whatsappNumber};

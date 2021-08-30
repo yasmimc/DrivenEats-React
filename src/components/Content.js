@@ -1,8 +1,6 @@
 import React from "react";
 import Options from "./Options";
 
-import fetchOptions from "../data";
-
 export default function Content(props){
     
     const {order, setOrder} = props;

@@ -6,7 +6,6 @@ import {
 export default function BottomBar(props) {
 	const [btnState, setBtnState] = React.useState("");
 	const [btnText, setBtnText] = React.useState("Selecione os 3 itens para fechar o pedido");
-	const [disabledBtn, setDisabledBtn] = React.useState();
 
 	const {mainCourseOrder, drinkOrder, dessertOrder} = props;
 
@@ -28,13 +27,11 @@ export default function BottomBar(props) {
 		if (btnState === "enabled") {
 			setBtnState("");
 			setBtnText("Selecione os 3 itens para fechar o pedido");
-			setDisabledBtn("onClick={e => e.preventDefault()}") 
 		}
 	}
 
 	function changeBtnState (event){
 		if (btnState === "") {
-			console.log("dsadsa")
 			event.preventDefault()
 		}
 	}

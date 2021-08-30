@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import { whatsappNumber } from "../data";
 
 export default function ConfirmationScreen(props){
-    const {btnState, order, mainCourseOrder, drinkOrder, dessertOrder} = props;
+    const {order, mainCourseOrder, drinkOrder, dessertOrder} = props;
 
     function sendOrder() {                
         sendWppMsg(mainCourseOrder, drinkOrder, dessertOrder, calcTotalPrice(order));        
@@ -36,7 +37,6 @@ export default function ConfirmationScreen(props){
 
 function sendWppMsg(mainCourseOrder, drinkOrder, dessertOrder, totalPrice) {
 
-	const whatsappNumber = "553184146801";
 	let whatsappMsg = `
 	Olá, gostaria de fazer o pedido:
 	- Prato: ${
