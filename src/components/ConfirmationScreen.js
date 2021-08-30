@@ -61,16 +61,16 @@ function sendWppMsg(mainCourseOrder, drinkOrder, dessertOrder, totalPrice) {
 function calcTotalPrice(order){
 	let total = 0;
 	order.map((item)=>{		
-		const price = (Number(item.price.substring(3).replace(',', '.')))
-		total = Number(total) + Number(price)*Number(item.amount)		
+		const price = (Number(item.price.substring(3).replace(',', '.')));
+		total = Number(total) + Number(price)*Number(item.amount);	
 	})
-	total = Number(total).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
+	total = Number(total).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
 	return total;
 }
 
 function calcTotalPricePerItem(item){
-    const itemPrice = item.price.substring(3).replace(',', '.');
-    const totalPricePerItem = (Number(itemPrice)*item.amount);
-    const convertedTotalPricePerItem = totalPricePerItem.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-    return convertedTotalPricePerItem;
+    const price = item.price.substring(3).replace(',', '.');
+    let totalPrice = (Number(price)*item.amount);
+    totalPrice = totalPrice.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+    return totalPrice;
 }

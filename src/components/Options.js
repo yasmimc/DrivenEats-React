@@ -2,7 +2,6 @@ import React from 'react';
 import fetchOptions from '../data';
 
 export default function Options(props){  
-
     const {order, setOrder, type} = props;
 
     const options = fetchOptions(type);
@@ -35,8 +34,8 @@ function Option(props){
         const listItem = order.find((item)=>(item.name === name));
         if(listItem){
             if(selectedOption===""){
-                setSelectedOption("selectedOption")
-                setAmount(listItem.amount)
+                setSelectedOption("selectedOption");
+                setAmount(listItem.amount);
             }
         }
     }
@@ -48,7 +47,7 @@ function Option(props){
     function selectOption(){
         if(amount === 0){
             setAmount(1);
-            setSelectedOption("selectedOption")   
+            setSelectedOption("selectedOption");
             setOrder([...order, {
                 type,
                 name,
@@ -79,7 +78,7 @@ function Option(props){
 function ItemCounter(props){ 
     const {amount, setAmount, setSelectedOption, order, setOrder} = props;
 
-    const indexSelectedItem = order.indexOf(order.find((item)=> item.name === props.item.name))
+    const indexSelectedItem = order.indexOf(order.find((item)=> item.name === props.item.name));
 
     function decrease(amount){   
 
@@ -115,5 +114,5 @@ function ItemCounter(props){
             {` ${amount} `}
             <span onClick={() => increase(amount)} style={{color:'green'}}>+</span>
         </p>
-    )
+    );
 }

@@ -1,8 +1,7 @@
 import React from "react";
 import Options from "./Options";
 
-export default function Content(props){
-    
+export default function Content(props){    
     const {order, setOrder} = props;
 
     const categories = [

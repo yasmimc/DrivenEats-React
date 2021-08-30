@@ -32,21 +32,18 @@ export default function BottomBar(props) {
 
 	function changeBtnState (event){
 		if (btnState === "") {
-			event.preventDefault()
+			event.preventDefault();
 		}
 	}
 
-	return (
-		
-			<div className="bottom-bar">
-				<Link to="/revisar" onClick={(event)=>(changeBtnState(event))}>
-					<button className={`order-buttom ${btnState}`}>
-						{btnText}
-					</button>
-				</Link>
-			</div>
-			
-		
+	return (	
+		<div className="bottom-bar">
+			<Link to="/revisar" onClick={(event)=>(changeBtnState(event))}>
+				<button className={`order-buttom ${btnState}`}>
+					{btnText}
+				</button>
+			</Link>
+		</div>		
 	);
 }
 
